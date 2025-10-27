@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Downloader</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎥 YouTube Video & Audio Downloader</h1>
+    <input type="text" id="url" placeholder="Enter YouTube video URL..." />
+    <div class="buttons">
+      <button onclick="download('mp3')">Download MP3 🎵</button>
+      <button onclick="download('mp4')">Download MP4 🎬</button>
+    </div>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    function download(format) {
+      const url = document.getElementById("url").value.trim();
+      const msg = document.getElementById("msg");
+
+      if (!url) {
+        msg.innerText = "⚠️ Please enter a YouTube URL.";
+        return;
+      }
+
+      msg.innerText = "⏳ Preparing your download...";
+      setTimeout(() => {
+        window.location.href = `/download?url=${encodeURIComponent(url)}&format=${format}`;
+        msg.innerText = "✅ If download doesn’t start, check the link or try again.";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
